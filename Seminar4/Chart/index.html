@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Bar Chart</title>
+</head>
+<body>
+    <form>
+        <input id="tb-values" type="text" value="1,2,3">
+        <button id="btn-draw">Draw</button>
+        <button id="btn-download" type="button" disabled>Download</button>
+    </form>
+    <canvas id="chart-canvas">
+        The canvas element is not supported.
+    </canvas>
+
+    <script src="canvas-bar-chart-library.js"></script>
+    <script>
+        "use strict";
+        const chartCanvas = document.querySelector('#chart-canvas');
+        const btnDownload = document.querySelector('#btn-download');
+        const barChart = new BarChart(chartCanvas);
+
+        document.querySelector('#btn-draw').addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const tbValues = document.querySelector('#tb-values');
+            const values = tbValues.value;
+
+            const options = {
+                drawOutline: false,
+                drawLabels: false
+            };
+
+            barChart.draw(values.split(',').map(Number), options);
+
+            btnDownload.disabled = false;
+        });
+
+        btnDownload.addEventListener('click', () => {
+            const dataUrl = chartCanvas.toDataURL('image/webp', 1);
+            const anchor = document.createElement('a');
+            anchor.href = dataUrl;
+            anchor.download = 'chart.webp';
+            anchor.click();
+        });
+    </script>
+</body>
+</html>
