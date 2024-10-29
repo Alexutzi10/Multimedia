@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML5 - Histogram</title>
+        <style>
+            canvas {
+                max-height: 400px;
+                width: 100%;
+            }
+            #canvas-Image {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <canvas id="canvas-Histogram">Canvas is not supported</canvas>
+        <canvas id="canvas-Image">Canvas is not supported</canvas>
+        
+        <script type="module">
+            import { BarChart } from './canvas-bar-chart-library.js';
+
+            const canvasHistogram = document.querySelector('#canvas-Histogram');
+            const canvasImage = document.querySelector('#canvas-Image');
+
+            function resizeCanvas() {
+                const width = window.innerWidth;
+                const height = Math.min(400, window.innerHeight);
+                
+                canvasHistogram.width = width;
+                canvasHistogram.height = height;
+                canvasImage.width = width;
+                canvasImage.height = height;
+            }
+
+            resizeCanvas();
+
+            window.addEventListener('resize', resizeCanvas);
+
+            document.addEventListener("dragover", (e) => {
+                e.preventDefault();
+            });
+
+            document.addEventListener("drop", (e) => {
+                e.preventDefault();
+                
+                const files = e.dataTransfer.files;
+                if(files.length > 0){
+                    const file = files[0];
+
+                    const reader = new FileReader();
+                    reader.addEventListener('load', () => {
+                        const dataURL = reader.result;
+                        const img = document.createElement('img');
+                        
+                        img.addEventListener('load', () => {
+                            const context = canvasImage.getContext('2d');
+                            
+                            const aspectRatio = img.width / img.height;
+                            let drawWidth = canvasImage.width;
+                            let drawHeight = drawWidth / aspectRatio;
+                            
+                            if (drawHeight > 400) {
+                                drawHeight = 400;
+                                drawWidth = drawHeight * aspectRatio;
+                            }
+                            
+                            const x = (canvasImage.width - drawWidth) / 2;
+                            const y = (canvasImage.height - drawHeight) / 2;
+                            
+                            context.clearRect(0, 0, canvasImage.width, canvasImage.height);
+                            context.drawImage(img, x, y, drawWidth, drawHeight);
+                        });
+                        
+                        img.src = dataURL;
+                    });	
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+    </body>
+</html>
