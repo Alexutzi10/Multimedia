@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 - Image Editor</title>
+</head>
+<body>
+    <canvas id="visible-canvas">
+        Your browser does not support the canvas element
+    </canvas>
+
+    <input id="file-picker" type="file" accept="image/*">
+
+    <div>
+        <button data-effect="normal">Normal</button>
+        <button data-effect="grayscale">Grayscale</button>
+        <button data-effect="threshold">Threshold</button>
+    </div>
+
+    <script src="app.js" type="module"></script>
+</body>
+</html>
