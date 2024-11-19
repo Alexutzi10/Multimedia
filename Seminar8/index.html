@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="image-editor">
+            <canvas id="visible-canvas">Your browser does not support the canvas element</canvas>
+            
+            <div class="controls">
+                <label for="file-picker" class="file-upload-btn">
+                    <input id="file-picker" type="file" accept="image/*" class="file-input">
+                    <span class="file-upload-text">Choose Image</span>
+                </label>
+                
+                <button id="open-effects-modal" class="effects-btn">
+                    Apply Effects
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="effects-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Image Effects</h2>
+            <div class="effect-grid">
+                <button data-effect="normal">Normal</button>
+                <button data-effect="grayscale">Grayscale</button>
+                <button data-effect="sepia">Sepia</button>
+                <button data-effect="negative">Negative</button>
+                <button data-effect="darker">Darker</button>
+                <button data-effect="pixelate">Pixelate</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js" type="module"></script>
+</body>
+</html>
