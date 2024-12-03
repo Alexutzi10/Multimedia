@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 - SVG</title>
+    <style type="text/css">
+        .bar{
+            fill: yellow;
+        }
+        .bar:hover{
+            fill: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="bar-chart"></div>
+
+    <script type="module">
+        import {BarChart} from './svg-bar-chart-library.js'
+
+        const barChart = new BarChart(document.getElementById('bar-chart'));
+
+        const data = [
+            ['Label 1', 1],
+            ['Label 2', 2],
+            ['Label 3', 3],
+        ];
+
+        barChart.draw(data);
+    </script>
+</body>
+</html>
