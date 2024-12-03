@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <audio
+        id="audio" 
+        controls>
+    </audio>
+
+    <button id="btn-play-pause">Play</button>
+
+    <div>
+        <span id="current-time">...</span> / <span id="duration">...</span>
+    </div>
+
+    <ul id="ul-tracks"></ul>
+
+    <script type="module" src="main.js">
+        /*const btnPlayPause = document.getElementById('btn-play-pause');
+        const audio = document.getElementById('audio');
+
+        btnPlayPause.addEventListener('click', () => {
+            if (audio.paused === true) {
+                audio.play();
+                btnPlayPause.textContent = 'Pause';
+            } else {
+                audio.pause();
+                btnPlayPause.textContent = 'Play';
+            }
+        });*/
+    </script>
+</body>
+</html>
